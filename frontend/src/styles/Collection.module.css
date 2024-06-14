@@ -1,0 +1,11 @@
+.collectionStatusBackground {
+	background: rgba(1, 160, 234, 0.25);
+}
+
+.collectionStyleContainer {
+	background: rgba(255, 255, 255, 0.07);
+}
+
+.collectionNameMarginTop {
+	margin-top: 1.7rem;
+}

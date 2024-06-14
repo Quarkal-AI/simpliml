@@ -1,0 +1,339 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "v1.0.0",
+    "title": "SimpliML | API Documentation",
+    "description": "Inference gateway API Documentation",
+    "termsOfService": "https://simpliml.com/terms-of-use",
+    "contact": {
+      "name": "SimpliML",
+      "email": "support@simpliml.com",
+      "url": "https://simpliml.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": ""
+    }
+  ],
+  "tags": [
+    {
+      "name": "Completions"
+    },
+    {
+      "name": "Chat"
+    }
+  ],
+  "paths": {
+    "/health/": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "example": "any"
+                  },
+                  "server": {
+                    "example": "any"
+                  },
+                  "model_id": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/completions/": {
+      "post": {
+        "tags": [
+          "Completions"
+        ],
+        "description": "OpenAI compatible chat inference endpoint",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the deployments were deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "description": "deployment id of the model"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Array of object containing role and content"
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "stream": {
+                    "type": "boolean",
+                    "description": ""
+                  },
+                  "top_p": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "top_k": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "frequency_penalty": {
+                    "type": "number",
+                    "description": ""
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "description": "deployment id of the model"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Array of object containing role and content"
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "stream": {
+                    "type": "boolean",
+                    "description": ""
+                  },
+                  "top_p": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "top_k": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "frequency_penalty": {
+                    "type": "number",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/chat/completions/": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "OpenAI compatible chat inference endpoint",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the deployments were deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "description": "deployment id of the model"
+                  },
+                  "messages": {
+                    "type": "array",
+                    "description": "Array of object containing role and content"
+                  },
+                  "temperature": {
+                    "type": "float",
+                    "description": ""
+                  },
+                  "stream": {
+                    "type": "boolean",
+                    "description": ""
+                  },
+                  "top_p": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "top_k": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "frequency_penalty": {
+                    "type": "float",
+                    "description": ""
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "description": "deployment id of the model"
+                  },
+                  "messages": {
+                    "type": "array",
+                    "description": "Array of object containing role and content"
+                  },
+                  "temperature": {
+                    "type": "float",
+                    "description": ""
+                  },
+                  "stream": {
+                    "type": "boolean",
+                    "description": ""
+                  },
+                  "top_p": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "top_k": {
+                    "type": "number",
+                    "description": ""
+                  },
+                  "frequency_penalty": {
+                    "type": "float",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

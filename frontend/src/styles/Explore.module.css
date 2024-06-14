@@ -1,0 +1,25 @@
+.linearGradient {
+	background: linear-gradient(to right, #1440b5, #00aaf0);
+}
+
+.borderColor {
+	border-color: #00aaf0;
+}
+
+.searchBarResultBackground {
+	background: #0a0f33;
+	z-index: 20;
+	border-radius: 0rem 0rem 1.25rem 1.25rem;
+}
+
+.searchBarZIndex {
+	z-index: 30;
+}
+
+.fontSizeSearchBarResults {
+	font-size: 0.875rem;
+}
+
+.searchBarResultPostion {
+	top: 27px;
+}

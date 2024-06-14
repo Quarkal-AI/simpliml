@@ -1,0 +1,20 @@
+.modelStatusBackground {
+	background: rgba(1, 160, 234, 0.25);
+	color: #ffffffba;
+}
+
+.modelStyleContainer {
+	background: rgba(255, 255, 255, 0.07);
+}
+
+.modelTotalRunsColor {
+	color: #6b6b6b;
+}
+
+.modelNameMarginTop {
+	margin-top: 1.7rem;
+}
+
+.rotateRocketTowardsRight {
+	transform: rotate(50deg);
+}

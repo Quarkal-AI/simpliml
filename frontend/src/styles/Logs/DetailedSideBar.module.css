@@ -1,0 +1,54 @@
+.slideLeft {
+	position: absolute;
+	/* background-color: #1b222e; */
+	background-color: #0e1322;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	box-shadow: -10px 0 15px rgba(0, 0, 0, 0.3); /* Left-side shadow */
+}
+
+.span {
+	animation: spanEffect 0.5s linear;
+}
+
+.close {
+	animation: closeEffect 0.5s linear;
+}
+
+@keyframes spanEffect {
+	0% {
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}
+
+@keyframes closeEffect {
+	0% {
+		transform: translateX(0%); /* Change from 100% to -100% */
+	}
+	100% {
+		transform: translateX(100%); /* Change from -100% to 100% */
+	}
+}
+
+.keys {
+	color: white;
+	opacity: 0.7;
+	font-size: 0.9em;
+}
+
+.values {
+	color: white;
+	font-size: 0.9em;
+}
+
+.outputDiv {
+	background-color: #222834;
+}
+
+.activeButton {
+	background-color: #2463eb;
+}

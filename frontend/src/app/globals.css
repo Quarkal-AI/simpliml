@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@500,301,300,401,400&display=swap");
+
+:root {
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
+}
+
+html {
+	font-size: 16px;
+	font-family: "General Sans", sans-serif;
+}
+
+@media screen and (min-width: 1000px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+@media screen and (min-width: 850px) and (max-width: 1000px) {
+	html {
+		font-size: 12px;
+	}
+}
+
+@media screen and (min-width: 750px) and (max-width: 850px) {
+	html {
+		font-size: 8px;
+	}
+}
+
+@media screen and (min-width: 650px) and (max-width: 750px) {
+	html {
+		font-size: 10px;
+	}
+}
+
+body {
+	/* padding: 40px 5.63rem 40px 5.63rem; */
+	@apply text-white bg-navy-900;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+h1 {
+	@apply text-4xl font-bold pb-2;
+}
+
+h2 {
+	@apply text-2xl font-bold pb-2;
+}
+
+h3 {
+	@apply font-bold;
+}
+
+hr {
+	@apply opacity-20 my-4;
+}
+
+.sidebar-item {
+	@apply 2xl:p-3 xl:p-2 lg:p-1 flex gap-2 rounded-md cursor-pointer hover:gradient;
+}
+
+input,
+textarea {
+	@apply block w-full bg-gray-800 p-2 rounded-md mt-2 mb-4 outline-none;
+}
+select {
+	@apply appearance-none bg-transparent w-full text-navy-800;
+}
+
+/* .select {
+  @apply bg-gray-800 p-2 flex rounded-md my-2 w-full;
+} */
+
+.select {
+	position: relative;
+}
+input:disabled {
+	@apply bg-gray-800;
+}
+select {
+	appearance: none;
+	/*  safari  */
+	-webkit-appearance: none;
+	/*  other styles for aesthetics */
+	width: 100%;
+	font-size: 1rem;
+
+	cursor: pointer;
+	@apply bg-gray-800 outline-none p-2 text-white rounded-md mt-2 mb-4;
+}
+
+.select::before,
+.select::after {
+	--size: 0.3rem;
+	content: "";
+	position: absolute;
+	pointer-events: none;
+}
+
+.select::after {
+	border-left: var(--size) solid transparent;
+	border-right: var(--size) solid transparent;
+	border-top: var(--size) solid white;
+	top: 45%;
+	right: 2%;
+}
+
+option {
+	@apply bg-white text-black-800;
+}
+
+label {
+	@apply flex gap-2 items-center;
+}
+.glass {
+	@apply bg-gray-600 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20 border border-gray-500;
+}
+
+button {
+	@apply disabled:bg-gray-600;
+	cursor: pointer;
+}
+.button-t1 {
+	@apply flex gap-2 bg-gradient-to-l from-[#00AAF0] to-[#1440B5] py-3 px-8 rounded-full transition-all bg-size-100 hover:bg-pos-100 hover:bg-size-200 disabled:from-gray-600 disabled:to-gray-600 disabled:hover:bg-pos-0 disabled:hover:bg-size-100;
+}
+
+.button-bordered {
+	@apply py-3 px-8 flex gap-2 items-center rounded-full border border-gray-500 hover:bg-black-800 transition-all;
+}
+
+.button-red {
+	@apply py-2 px-6 flex gap-2 items-center rounded-md text-red-500 border border-red-500 hover:bg-red-900 transition-all;
+}
+
+@layer components {
+	.gradient {
+		@apply bg-gradient-to-l from-navy-500 to-navy-700 text-transparent bg-clip-text;
+	}
+}
+
+.back-gradient {
+	@apply bg-gradient-to-l from-navy-500 to-navy-700;
+}
+
+.sidebar-item-selected {
+	@apply bg-navy-800 border-r-2 border-navy-500 text-navy-500;
+}
+
+/* ====== scrolbar ====== */
+::-webkit-scrollbar {
+	width: 5px;
+}
+.scrollbarHeight::-webkit-scrollbar {
+	height: 5px;
+}
+::-webkit-scrollbar-track {
+	@apply bg-black-800 rounded-full;
+}
+::-webkit-scrollbar-thumb {
+	@apply bg-white rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #fff;
+}
+.mainHeading {
+	color: #fff;
+	font-family: Microsoft New Tai Lue;
+	font-size: 1.5rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.75rem; /* 116.667% */
+	text-transform: capitalize;
+}
+.subHeading {
+	color: #fff;
+	font-family: Microsoft New Tai Lue;
+	font-size: 1.25rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.75rem; /* 140% */
+	text-transform: capitalize;
+}
+
+@layer utilities {
+	/* Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+}
+
+.linear-gradient {
+	background: linear-gradient(to right, rgb(20, 64, 181), rgb(0, 170, 240));
+}

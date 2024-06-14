@@ -1,0 +1,38 @@
+.dropdown {
+	color: white;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	position: relative;
+}
+
+.dropdown-control {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: white;
+	color: white;
+	border: none;
+	font-size: 0.9em;
+}
+
+.dropdown-menu {
+	background-color: white;
+	border: none;
+	backdrop-filter: blur(100em);
+	border: 1px solid rgb(75, 85, 99);
+	padding: 0.25em 0;
+}
+
+.placeholder {
+	color: white;
+}
+
+.options {
+	color: white;
+	font-size: 0.9em;
+}
+
+.arrow {
+	color: white;
+}

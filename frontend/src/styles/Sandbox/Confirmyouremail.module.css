@@ -1,0 +1,67 @@
+.containerLayout {
+	width: 43.3125rem;
+	height: 33.4375rem;
+	flex-shrink: 0;
+	padding: 3.5rem 3.5rem 3.5rem 3.5rem;
+}
+
+.containerStyle {
+	border-radius: 1.25rem;
+	background: rgba(255, 255, 255, 0.17);
+	backdrop-filter: blur(22px);
+}
+
+.headingStyle {
+	display: flex;
+	width: 21.8125rem;
+	height: 1.3125rem;
+	flex-direction: column;
+	justify-content: center;
+	flex-shrink: 0;
+	color: #fff;
+	text-align: center;
+	font-family: "General Sans", sans-serif;
+	font-size: 2.375rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 2.3125rem; /* 97.368% */
+}
+
+.subheadingStyle {
+	color: #fff;
+	text-align: center;
+	font-family: Inter;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 1.75rem; /* 175% */
+	display: flex;
+	width: 24.9375rem;
+	height: 0.75rem;
+	flex-direction: column;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.buttonOpenEmailStyle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36.3125rem;
+	height: 3.8125rem;
+	flex-shrink: 0;
+	border-radius: 0.5625rem;
+	background: linear-gradient(90deg, #1440b5 0%, #00aaf0 100%);
+}
+
+.buttonResendEmailStyle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36.3125rem;
+	height: 3.8125rem;
+	flex-shrink: 0;
+	border-radius: 0.5625rem;
+	background: rgba(255, 255, 255, 0.17) transparent;
+	backdrop-filter: blur(22px);
+}

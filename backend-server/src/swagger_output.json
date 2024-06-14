@@ -1,0 +1,1741 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "v1.0.0",
+    "title": "SimpliML | API Documentation",
+    "description": "SimpliML GenAI Infrastructure Management",
+    "termsOfService": "https://simpliml.com/terms-of-use",
+    "contact": {
+      "name": "SimpliML",
+      "email": "support@simpliml.com",
+      "url": "https://simpliml.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": ""
+    }
+  ],
+  "tags": [
+    {
+      "name": "Deployment"
+    },
+    {
+      "name": "Model"
+    },
+    {
+      "name": "Prompt"
+    },
+    {
+      "name": "Finetune"
+    },
+    {
+      "name": "Logs"
+    }
+  ],
+  "paths": {
+    "/api/": {
+      "get": {
+        "tags": [
+          "API Key"
+        ],
+        "description": "Get the API key",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the deployments were deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "hfToken": {
+                          "type": "string",
+                          "description": "Huggingface Token"
+                        },
+                        "apiToken": {
+                          "type": "string",
+                          "description": "SimpliML Token"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/": {
+      "get": {
+        "description": "Healthcheck route for the server",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/deployment/": {
+      "post": {
+        "tags": [
+          "Deployment"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Get a specific user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "John Doe"
+                    },
+                    "age": {
+                      "type": "number",
+                      "example": 29
+                    },
+                    "about": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "John Doe"
+                    },
+                    "age": {
+                      "type": "number",
+                      "example": 29
+                    },
+                    "about": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "number",
+                    "example": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deployment/create": {
+      "post": {
+        "tags": [
+          "Deployment"
+        ],
+        "description": "Create a new deployment.",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the deployment was created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "deployment_id": {
+                          "type": "string",
+                          "description": "The ID of the created deployment."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deployment_name": {
+                    "type": "string",
+                    "description": "The name of the deployment."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the deployment."
+                  },
+                  "model_id": {
+                    "type": "string",
+                    "description": "The ID of the model to deploy."
+                  },
+                  "max_containers": {
+                    "type": "string",
+                    "description": "The maximum number of containers for the deployment."
+                  },
+                  "min_containers": {
+                    "type": "string",
+                    "description": "The minimum number of containers for the deployment."
+                  },
+                  "gpu": {
+                    "type": "string",
+                    "description": "The GPU type for the deployment."
+                  },
+                  "server": {
+                    "type": "string",
+                    "description": "The server for the deployment."
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deployment_name": {
+                    "type": "string",
+                    "description": "The name of the deployment."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the deployment."
+                  },
+                  "model_id": {
+                    "type": "string",
+                    "description": "The ID of the model to deploy."
+                  },
+                  "max_containers": {
+                    "type": "string",
+                    "description": "The maximum number of containers for the deployment."
+                  },
+                  "min_containers": {
+                    "type": "string",
+                    "description": "The minimum number of containers for the deployment."
+                  },
+                  "gpu": {
+                    "type": "string",
+                    "description": "The GPU type for the deployment."
+                  },
+                  "server": {
+                    "type": "string",
+                    "description": "The server for the deployment."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deployment/edit": {
+      "post": {
+        "tags": [
+          "Deployment"
+        ],
+        "description": "Edit an existing deployment.",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the deployment was edited successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deployment_id": {
+                    "type": "string",
+                    "description": "The ID of the deployment to edit."
+                  },
+                  "minReplicas": {
+                    "type": "number",
+                    "description": "The new value for minimum replicas."
+                  },
+                  "maxReplicas": {
+                    "type": "number",
+                    "description": "The new value for maximum replicas."
+                  },
+                  "gpu": {
+                    "type": "string",
+                    "description": "The new GPU type."
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deployment_id": {
+                    "type": "string",
+                    "description": "The ID of the deployment to edit."
+                  },
+                  "minReplicas": {
+                    "type": "number",
+                    "description": "The new value for minimum replicas."
+                  },
+                  "maxReplicas": {
+                    "type": "number",
+                    "description": "The new value for maximum replicas."
+                  },
+                  "gpu": {
+                    "type": "string",
+                    "description": "The new GPU type."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deployment/delete": {
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/finetuning/": {
+      "post": {
+        "tags": [
+          "Finetune"
+        ],
+        "description": "Get pipelines from Elasticsearch with pagination.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "The page number for pagination.",
+            "example": 0,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing pipeline data and total pages.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "pipeline": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          },
+                          "description": "Array of pipeline objects retrieved from Elasticsearch."
+                        },
+                        "total_page": {
+                          "type": "integer",
+                          "description": "Total number of pages available based on the pagination."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  },
+                  "data": {
+                    "example": "any"
+                  },
+                  "success": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/finetuning/create": {
+      "post": {
+        "tags": [
+          "Finetune"
+        ],
+        "description": "Create a pipeline for training a model with specified configurations.",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the pipeline creation was successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dataset_id": {
+                    "type": "string",
+                    "description": "ID of the dataset."
+                  },
+                  "num_epochs": {
+                    "type": "number",
+                    "description": "Number of epochs for training."
+                  },
+                  "lr": {
+                    "type": "number",
+                    "description": "Learning rate for training."
+                  },
+                  "batch_size": {
+                    "type": "number",
+                    "description": "Batch size for training."
+                  },
+                  "lora_alpha": {
+                    "type": "number",
+                    "description": "Alpha parameter for LoRA."
+                  },
+                  "lora_r": {
+                    "type": "number",
+                    "description": "R parameter for LoRA."
+                  },
+                  "lora_dropout": {
+                    "type": "number",
+                    "description": "Dropout rate for LoRA."
+                  },
+                  "gpu": {
+                    "type": "string",
+                    "description": "GPU for training."
+                  },
+                  "model_id": {
+                    "type": "string",
+                    "description": "ID of the model."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "Method for training."
+                  },
+                  "optimizer": {
+                    "type": "string",
+                    "description": "Optimizer for training."
+                  },
+                  "export": {
+                    "type": "boolean",
+                    "description": "Flag to indicate if model export is required."
+                  },
+                  "reduce_batch_size": {
+                    "type": "boolean",
+                    "description": "Flag to indicate if batch size needs to be reduced."
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dataset_id": {
+                    "type": "string",
+                    "description": "ID of the dataset."
+                  },
+                  "num_epochs": {
+                    "type": "number",
+                    "description": "Number of epochs for training."
+                  },
+                  "lr": {
+                    "type": "number",
+                    "description": "Learning rate for training."
+                  },
+                  "batch_size": {
+                    "type": "number",
+                    "description": "Batch size for training."
+                  },
+                  "lora_alpha": {
+                    "type": "number",
+                    "description": "Alpha parameter for LoRA."
+                  },
+                  "lora_r": {
+                    "type": "number",
+                    "description": "R parameter for LoRA."
+                  },
+                  "lora_dropout": {
+                    "type": "number",
+                    "description": "Dropout rate for LoRA."
+                  },
+                  "gpu": {
+                    "type": "string",
+                    "description": "GPU for training."
+                  },
+                  "model_id": {
+                    "type": "string",
+                    "description": "ID of the model."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "Method for training."
+                  },
+                  "optimizer": {
+                    "type": "string",
+                    "description": "Optimizer for training."
+                  },
+                  "export": {
+                    "type": "boolean",
+                    "description": "Flag to indicate if model export is required."
+                  },
+                  "reduce_batch_size": {
+                    "type": "boolean",
+                    "description": "Flag to indicate if batch size needs to be reduced."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/finetuning/delete": {
+      "post": {
+        "tags": [
+          "Finetune"
+        ],
+        "description": "Delete pipelines based on provided IDs.",
+        "parameters": [
+          {
+            "name": "pipeline_ids",
+            "in": "path",
+            "description": "Array of pipeline IDs to delete.",
+            "required": true,
+            "items": {
+              "type": "string"
+            },
+            "schema": {
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the pipelines were deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "in": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "required": {
+                    "example": "any"
+                  },
+                  "type": {
+                    "example": "any"
+                  },
+                  "items": {
+                    "example": "any"
+                  },
+                  "success": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/finetuning/details": {
+      "post": {
+        "tags": [
+          "Finetune"
+        ],
+        "description": "Get details of a specific pipeline by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the pipeline to get details for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing details of the requested pipeline.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Details of the requested pipeline."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  },
+                  "data": {
+                    "example": "any"
+                  },
+                  "success": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/finetuning/logs": {
+      "post": {
+        "tags": [
+          "Finetune"
+        ],
+        "description": "Get logs of a specific pipeline by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the pipeline to get logs for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing logs of the requested pipeline.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "string",
+                      "description": "Logs of the requested pipeline."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  },
+                  "data": {
+                    "example": "any"
+                  },
+                  "success": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/finetuning/{{indexprocess.env.FINETUNING_INDEX!}": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/prompt/": {
+      "post": {
+        "tags": [
+          "Prompt"
+        ],
+        "description": "Get prompts from the prompt index.",
+        "responses": {
+          "200": {
+            "description": "Successful response containing prompts data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Array of prompts."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  },
+                  "data": {
+                    "example": "any"
+                  },
+                  "success": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prompt/create": {
+      "post": {
+        "tags": [
+          "Prompt"
+        ],
+        "description": "Create a new prompt.",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the prompt was created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt_name": {
+                    "type": "string",
+                    "description": "The name of the prompt."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "The content of the prompt."
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt_name": {
+                    "type": "string",
+                    "description": "The name of the prompt."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "The content of the prompt."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prompt/edit": {
+      "post": {
+        "tags": [
+          "Prompt"
+        ],
+        "description": "Edit an existing prompt.",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the prompt was edited successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt_id": {
+                    "type": "string",
+                    "description": "The ID of the prompt to edit."
+                  },
+                  "prompt_name": {
+                    "type": "string",
+                    "description": "The new name of the prompt."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "The new content of the prompt."
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt_id": {
+                    "type": "string",
+                    "description": "The ID of the prompt to edit."
+                  },
+                  "prompt_name": {
+                    "type": "string",
+                    "description": "The new name of the prompt."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "The new content of the prompt."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prompt/delete": {
+      "post": {
+        "tags": [
+          "Prompt"
+        ],
+        "description": "Delete prompts by their IDs.",
+        "responses": {
+          "200": {
+            "description": "Successful response indicating the prompts were deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Array of prompt IDs."
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Array of prompt IDs."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/": {
+      "post": {
+        "tags": [
+          "Logs"
+        ],
+        "description": "Get inference request logs.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response containing logs data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "logs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          },
+                          "description": "Array of logs."
+                        },
+                        "totalPages": {
+                          "type": "number",
+                          "description": "Total number of pages for pagination."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "in": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "required": {
+                    "example": "any"
+                  },
+                  "schema": {
+                    "example": "any"
+                  },
+                  "filters": {
+                    "example": "any"
+                  },
+                  "model": {
+                    "example": "any"
+                  },
+                  "data": {
+                    "example": "any"
+                  },
+                  "success": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/details": {
+      "post": {
+        "tags": [
+          "Logs"
+        ],
+        "description": "Get logs based on the provided trace ID.",
+        "responses": {
+          "200": {
+            "description": "Successful response containing log data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Log data."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "traceId": {
+                    "type": "string",
+                    "description": "The trace ID used to retrieve logs."
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "traceId": {
+                    "type": "string",
+                    "description": "The trace ID used to retrieve logs."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/filters": {
+      "post": {
+        "tags": [
+          "Logs"
+        ],
+        "description": "Get unique fields from the inference logs based on the specified field type.",
+        "responses": {
+          "200": {
+            "description": "Successful response containing unique field values.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string",
+                            "description": "The unique field value."
+                          },
+                          "doc_count": {
+                            "type": "integer",
+                            "description": "The count of documents with this value."
+                          }
+                        }
+                      },
+                      "description": "Array of unique field values with document count."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "field": {
+                    "type": "string",
+                    "description": "The type of field to retrieve unique values for.",
+                    "enum": [
+                      "models",
+                      "users",
+                      "paths"
+                    ]
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "field": {
+                    "type": "string",
+                    "description": "The type of field to retrieve unique values for.",
+                    "enum": [
+                      "models",
+                      "users",
+                      "paths"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/export": {
+      "post": {
+        "tags": [
+          "Logs"
+        ],
+        "description": "Export logs based on the provided parameters.",
+        "responses": {
+          "200": {
+            "description": "Successful response containing exported log data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Exported log data."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "The type of export to perform.",
+                    "enum": [
+                      "csv",
+                      "json"
+                    ]
+                  },
+                  "interval": {
+                    "type": "string",
+                    "description": "The time interval for the log data.",
+                    "example": "1d"
+                  },
+                  "workspace_id": {
+                    "type": "string",
+                    "description": "The workspace ID of the user (optional).",
+                    "example": "12345"
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "The type of export to perform.",
+                    "enum": [
+                      "csv",
+                      "json"
+                    ]
+                  },
+                  "interval": {
+                    "type": "string",
+                    "description": "The time interval for the log data.",
+                    "example": "1d"
+                  },
+                  "workspace_id": {
+                    "type": "string",
+                    "description": "The workspace ID of the user (optional).",
+                    "example": "12345"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/models/get_model_by_id/{id}": {
+      "get": {
+        "tags": [
+          "Model"
+        ],
+        "description": "Get the details of deployed model by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response indicating that details are fecthed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful."
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Object conating deployed model details"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error message describing the issue."
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was unsuccessful."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/models/get_model_by_id/{id{index:process.env.DEPLOYMENT_INDEX!}": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,138 @@
+.runTheModelHeading {
+	display: flex;
+	width: 16.02088rem;
+	height: 1.24775rem;
+	transform: rotate(-0.085deg);
+	flex-direction: column;
+	justify-content: center;
+	flex-shrink: 0;
+	color: #fff;
+	font-family: "General Sans", sans-serif;
+	font-size: 2.25rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.125rem; /* 50% */
+}
+.installationCommand {
+	display: flex;
+	width: 12.22594rem;
+	height: 0.70406rem;
+	transform: rotate(-0.064deg);
+	flex-direction: column;
+	justify-content: center;
+	flex-shrink: 0;
+}
+.textDecorationUnderline {
+	color: #fff;
+	font-family: "General Sans", sans-serif;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.125rem;
+	text-decoration-line: underline;
+}
+.codeContainer {
+	flex-shrink: 0;
+	border-radius: 0.3125rem;
+	background: #141624;
+}
+.codeContainerText {
+	display: flex;
+	width: 9.03144rem;
+	height: 0.53894rem;
+	transform: rotate(-0.064deg);
+	flex-direction: column;
+	justify-content: center;
+	flex-shrink: 0;
+	color: #fff;
+	font-family: "General Sans", sans-serif;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.125rem; /* 112.5% */
+}
+.textDecoration {
+	color: #fff;
+	font-family: "General Sans", sans-serif;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.125rem; /* 100% */
+}
+.arrowUpImage {
+	width: 0.6875rem;
+	height: 0.375rem;
+	flex-shrink: 0;
+	transform: rotate(180deg);
+}
+.languageSelectorPadding {
+	width: 7.6875rem;
+	height: 2.875rem;
+	flex-shrink: 0;
+	padding: 1.06rem 1.44rem 1.1rem 1.44rem;
+	border-radius: 5.9375rem;
+}
+.accessKeyContainer {
+	flex-shrink: 0;
+	border-radius: 0.3125rem;
+	background: #141624;
+	padding: 0.75rem 0rem 0.75rem 1.12rem;
+}
+.codeContainerSize {
+	width: 90%;
+}
+.copyImageContainerMargin {
+	margin: 1.06rem 0.05rem 1.1rem 1.44rem;
+}
+.inputHeadingStyles {
+	color: #fff;
+	font-family: "General Sans", sans-serif;
+	font-size: 2.375rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.125rem; /* 47.368% */
+}
+.inputTypeStyles {
+	color: #707070;
+	font-family: Inter;
+	font-size: 1rem;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.125rem;
+}
+.hashtagImageSize {
+	width: 1rem;
+	height: 1rem;
+}
+.outputContainer {
+	border-radius: 0.3125rem;
+	background: #141624;
+	padding: 1.63rem 2.25rem 1.56rem 1.25rem;
+}
+.apiTokenTextStyle {
+	color: #fff;
+	font-family: "General Sans", sans-serif;
+	font-size: 0.875rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.125rem; /* 128.571% */
+}
+.apiTokenSpecialTextStyle {
+	color: #fff;
+	font-family: "General Sans", sans-serif;
+	font-size: 0.875rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.125rem;
+	text-decoration-line: underline;
+}
+.copyImageAPIToken {
+	width: 1.0625rem;
+	height: 1.0625rem;
+	flex-shrink: 0;
+}
+.copyImageCodeContainer {
+	width: 1.4375rem;
+	height: 1.4375rem;
+	flex-shrink: 0;
+}

@@ -1,0 +1,123 @@
+version: '3.9'
+
+services:
+  setup:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ES_VERSION}
+    user: "0"
+    command: >
+      bash -c '
+        echo "Waiting for Elasticsearch availability";
+        until curl -s https://elasticsearch:9200 | grep -q "missing authentication credentials"; do sleep 30; done;
+        echo "Setting kibana_system password";
+        until curl -s -X POST -u "elastic:${ES_PASSWORD}" -H "Content-Type: application/json" https://elasticsearch:9200/_security/user/kibana_system/_password -d "{\"password\":\"${ES_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
+        echo "All done!";
+      '
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ES_VERSION}
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    # ports:
+    #   - 9200:9200
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=elasticsearch
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=${ES_PASSWORD}
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=true
+      - xpack.license.self_generated.type=basic
+    mem_limit: 2147483648
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s http://localhost:9200 | grep -q 'missing authentication credentials'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+    network_mode: host
+
+  kibana:
+    container_name: kibana
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    image: docker.elastic.co/kibana/kibana:${ES_VERSION}
+    volumes:
+      - kibanadata:/usr/share/kibana/data
+    # ports:
+    #   - 5601:5601
+    environment:
+      - SERVERNAME=kibana
+      - ELASTICSEARCH_HOSTS=http://localhost:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${ES_PASSWORD}
+      - SERVER_PUBLICBASEURL=http://localhost:5601
+    mem_limit: 2147483648
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+    network_mode: host
+
+  inference:
+    build:
+      context: ./inference-gateway
+      dockerfile: Dockerfile
+    image: inference
+    container_name: inference
+    restart: always
+    env_file: ./inference-gateway/.env
+    # ports:
+    #   - '5000:5000'
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    network_mode: host
+
+  backend:
+    build:
+      context: ./backend-server
+      dockerfile: Dockerfile
+    image: backend
+    container_name: backend
+    restart: always
+    env_file: ./backend-server/.env
+    # ports:
+    #   - '3001:3001'
+    depends_on:
+      - inference
+    network_mode: host
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: frontend
+    container_name: frontend
+    restart: always
+    # ports:
+    #   - '3000:3000'
+    depends_on:
+      - backend
+    network_mode: host
+
+volumes:
+  certs:
+    driver: local
+  esdata:
+    driver: local
+  kibanadata:
+    driver: local

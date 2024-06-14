@@ -1,0 +1,30 @@
+.scrollbar::-webkit-scrollbar {
+	height: 5px;
+}
+.innerScrollbar::-webkit-scrollbar {
+	height: 0px;
+}
+.popup {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 20;
+	background-color: #0e1018;
+}
+.modelStep1ContainerLayout {
+	height: 21.3125rem;
+	border-radius: 0.875rem;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: rgba(255, 255, 255, 0.05);
+}
+.rotateDivVertical {
+	transform: rotate(180deg);
+}
+.finetuningRow {
+	padding: 1rem 0rem 1rem 1rem;
+	text-align: left;
+}
+.finetuningFirstColoumn {
+	padding: 1rem 0rem 1rem 3rem;
+	text-align: left;
+}

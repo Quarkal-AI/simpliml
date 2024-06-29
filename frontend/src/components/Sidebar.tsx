@@ -1,6 +1,7 @@
 "use client"
 
 import {
+	ActivitySquare,
 	ArrowLeft,
 	ArrowRight,
 	BookText,
@@ -70,6 +71,13 @@ const Sidebar = () => {
 				</div>
 
 				<div className="py-4 h-full text-gray-500 flex flex-col">
+					<div
+						className={`sidebar-item group ${sideTab == "/dashboard" ? "sidebar-item-selected" : ""}`}
+						id="dashboard"
+						onClick={handleSideTabClick}
+					>
+						<ActivitySquare className="group-hover:text-navy-500" /> Dashboard
+					</div>
 					<div
 						className={`sidebar-item group  ${
 							localStorage.getItem("activenavlink") === "/deployment" ? "sidebar-item-selected" : ""

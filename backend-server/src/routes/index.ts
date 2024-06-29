@@ -6,12 +6,13 @@ import logsRouter from './logs.routes';
 import healthRouter from './health.routes';
 import apiRouter from './api.routes';
 import modelRouter from './model.routes';
-
+import dashboardRouter from './dashboard.routes';
 const router = express.Router();
 
 router.use('/api', apiRouter)
 router.use('/health', healthRouter)
 router.use('/deployment', deployRouter);
+router.use('/dashboard', dashboardRouter);
 router.use('/finetuning', finetuneRouter);
 router.use('/prompt', promptRouter);
 router.use('/logs', logsRouter);

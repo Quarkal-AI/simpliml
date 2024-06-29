@@ -18,16 +18,19 @@ const doc = {
   },
   servers: [
     {
-      url: 'http://localhost:3001',
+      url: 'http://localhost:3001/api/v1',
       description: '',
     },
   ],
   tags: [
     {
+      name: 'Dashboard',
+    },
+    {
       name: 'Deployment',
     },
     {
-      name: 'Model'
+      name: 'Model',
     },
     {
       name: 'Prompt',
@@ -36,8 +39,8 @@ const doc = {
       name: 'Finetune',
     },
     {
-      name: 'Logs'
-    }
+      name: 'Logs',
+    },
   ],
 };
 

@@ -17,11 +17,14 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000",
+      "url": "http://localhost:3001/api/v1",
       "description": ""
     }
   ],
   "tags": [
+    {
+      "name": "Dashboard"
+    },
     {
       "name": "Deployment"
     },
@@ -422,6 +425,562 @@
         "responses": {
           "default": {
             "description": ""
+          }
+        }
+      }
+    },
+    "/dashboard/get_analytics_data": {
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Analytics data retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "total_tokens": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "key_as_string": {
+                                "type": "string",
+                                "example": "2024-06-10"
+                              },
+                              "key": {
+                                "type": "integer",
+                                "example": 1717977600000
+                              },
+                              "doc_count": {
+                                "type": "integer",
+                                "example": 0
+                              },
+                              "completion_tokens": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "integer",
+                                    "example": 0
+                                  }
+                                }
+                              },
+                              "prompt_tokens": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "integer",
+                                    "example": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "diff_error": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "key_as_string": {
+                                "type": "string",
+                                "example": "2024-06-10"
+                              },
+                              "key": {
+                                "type": "integer",
+                                "example": 1717977600000
+                              },
+                              "doc_count": {
+                                "type": "integer",
+                                "example": 0
+                              },
+                              "total_errors": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "integer",
+                                    "example": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "request_graph": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "key_as_string": {
+                                "type": "string",
+                                "example": "2024-06-10"
+                              },
+                              "key": {
+                                "type": "integer",
+                                "example": 1717977600000
+                              },
+                              "doc_count": {
+                                "type": "integer",
+                                "example": 0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected Error at Server. Please try again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unexpected Error at Server. Please try again!!"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "selectedInterval": {
+                    "type": "string",
+                    "example": "15d/d"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard/get_quantitative_data": {
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Quantitative data retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "average_latency": {
+                          "type": "number",
+                          "example": 0
+                        },
+                        "requests": {
+                          "type": "integer",
+                          "example": 57
+                        },
+                        "input_tokens": {
+                          "type": "integer",
+                          "example": 147
+                        },
+                        "output_tokens": {
+                          "type": "integer",
+                          "example": 277
+                        }
+                      }
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected Error at Server. Please try again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unexpected Error at Server. Please try again!!"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "selectedInterval": {
+                    "type": "string",
+                    "example": "1d/d"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard/get_users_data": {
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "User data retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "users": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "key": {
+                                "type": "string",
+                                "example": "none"
+                              },
+                              "doc_count": {
+                                "type": "integer",
+                                "example": 57
+                              }
+                            }
+                          }
+                        },
+                        "unique_users": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "key_as_string": {
+                                "type": "string",
+                                "example": "2024-06-10"
+                              },
+                              "key": {
+                                "type": "integer",
+                                "example": 1717977600000
+                              },
+                              "doc_count": {
+                                "type": "integer",
+                                "example": 0
+                              },
+                              "unique_users": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "integer",
+                                    "example": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "count_unique_user": {
+                          "type": "integer",
+                          "example": 0
+                        }
+                      }
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected Error at Server. Please try again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unexpected Error at Server. Please try again!!"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "selectedInterval": {
+                    "type": "string",
+                    "example": "1d"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard/get_models_data": {
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Users data retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "users": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "key": {
+                                "type": "string",
+                                "example": "none"
+                              },
+                              "doc_count": {
+                                "type": "integer",
+                                "example": 57
+                              }
+                            }
+                          }
+                        },
+                        "unique_users": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "key_as_string": {
+                                "type": "string",
+                                "example": "2024-06-10"
+                              },
+                              "key": {
+                                "type": "integer",
+                                "example": 1717977600000
+                              },
+                              "doc_count": {
+                                "type": "integer",
+                                "example": 0
+                              },
+                              "unique_users": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "integer",
+                                    "example": 0
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "count_unique_user": {
+                          "type": "integer",
+                          "example": 0
+                        }
+                      }
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected Error at Server. Please try again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unexpected Error at Server. Please try again!!"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "selectedInterval": {
+                    "type": "string",
+                    "example": "1d/d"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard/get_piechart_data": {
+      "post": {
+        "tags": [
+          "Dashboard"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Pie chart data retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "key": {
+                                "type": "integer",
+                                "example": 500
+                              },
+                              "doc_count": {
+                                "type": "integer",
+                                "example": 32
+                              }
+                            }
+                          }
+                        },
+                        "total_errors": {
+                          "type": "integer",
+                          "example": 32
+                        }
+                      }
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected Error at Server. Please try again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unexpected Error at Server. Please try again!!"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "selectedInterval": {
+                    "type": "string",
+                    "example": "1d"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1629,11 +2188,6 @@
                     "type": "string",
                     "description": "The time interval for the log data.",
                     "example": "1d"
-                  },
-                  "workspace_id": {
-                    "type": "string",
-                    "description": "The workspace ID of the user (optional).",
-                    "example": "12345"
                   }
                 }
               }
@@ -1654,11 +2208,6 @@
                     "type": "string",
                     "description": "The time interval for the log data.",
                     "example": "1d"
-                  },
-                  "workspace_id": {
-                    "type": "string",
-                    "description": "The workspace ID of the user (optional).",
-                    "example": "12345"
                   }
                 }
               }

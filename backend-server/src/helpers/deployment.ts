@@ -10,6 +10,10 @@ export const deploy_model = async (deployment_id: string, model_id: string, gpu:
         llm_args = ["--model", model_id, "--trust-remote-code", "--host", "0.0.0.0", "--port", "8000"]
     } else if (server === "tgi") {
         llm_args = ["--model-id", model_id, "--trust-remote-code", "--hostname", "0.0.0.0", "--port", "8000"]
+    } else if (server === "lmdeploy" ) {
+        llm_args = ["lmdeploy", "serve", "api_server", model_id, "--server-port", "8000"]
+    } else if (server === "sglang") {
+        llm_args = ["python3", "-m", "sglang.launch_server", "--model-path", model_id, "--host", "0.0.0.0", "--port", "8000"]
     } else {
         // TO-DO
     }

@@ -92,6 +92,8 @@ const SelectDeployDetails = () => {
 						>
 							<option value="vllm">vllm</option>
 							<option value="tgi">tgi</option>
+							<option value="lmdeploy">lmdeploy</option>
+							<option value="sglang">sglang</option>
 							<option value="triton">triton</option>
 						</select>
 					</div>

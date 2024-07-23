@@ -121,7 +121,10 @@ export const chat = async (req: CustomRequest, res: Response) => {
             top_p: top_p ? top_p : 0.9,
             max_tokens: max_tokens ? max_tokens : 256,
             stop: stop ? stop : [],
-            stream: stream ? stream : false
+            stream: stream ? stream : false,
+            stream_options: {
+                include_usage: true
+            }
         });
 
         if (stream) {

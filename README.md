@@ -44,6 +44,26 @@ SimpliML offers a user-friendly interface and extensive resources, making it an 
 ### ☸️ Kubernetes Deployment (Recommended)
 **NOTE**: SimpliML requires Kubernetes for deployment. Kubernetes provides the necessary orchestration and scaling capabilities to manage the infrastructure efficiently. Ensure you have a Kubernetes cluster set up before deploying SimpliML.
 
+1. Database Deployment
+
+    The easy way to setup elasticsearch and kibana is throught helm. Follow this [documentation](https://www.elastic.co/guide/en/cloud-on-k8s/2.13/k8s-install-helm.html)
+
+    ```bash
+        helm repo add elastic https://helm.elastic.co
+        
+        helm repo update
+    ```
+
+2. SimpliML Application
+
+    The easy way to setup simpliml is throught helm. Follow this [documentation](https://github.com/Quarkal-AI/simpliml-helm)
+
+    ```bash
+        helm repo add simpliml https://quarkal-ai.github.io/simpliml-helm
+        
+        helm repo update
+    ```
+
 ### 🖥️ Local Deployment
 To get started with SimpliML, the easiest way is using Docker:
 

@@ -46,7 +46,7 @@ SimpliML offers a user-friendly interface and extensive resources, making it an 
 
 1. Database Deployment
 
-    The easy way to setup elasticsearch and kibana is throught helm. Follow this [documentation](https://www.elastic.co/guide/en/cloud-on-k8s/2.13/k8s-install-helm.html)
+    The easy way to set up elasticsearch and kibana is through Helm. Follow this [documentation](https://www.elastic.co/guide/en/cloud-on-k8s/2.13/k8s-install-helm.html)
 
     ```bash
         helm repo add elastic https://helm.elastic.co
@@ -56,7 +56,7 @@ SimpliML offers a user-friendly interface and extensive resources, making it an 
 
 2. SimpliML Application
 
-    The easy way to setup simpliml is throught helm. Follow this [documentation](https://github.com/Quarkal-AI/simpliml-helm)
+    The easy way to set up simpliml is through Helm. Follow this [documentation](https://github.com/Quarkal-AI/simpliml-helm)
 
     ```bash
         helm repo add simpliml https://quarkal-ai.github.io/simpliml-helm
@@ -65,7 +65,7 @@ SimpliML offers a user-friendly interface and extensive resources, making it an 
     ```
 
 ### 🖥️ Local Deployment
-To get started with SimpliML, the easiest way is using Docker:
+To get started with SimpliML, the easiest way is to use Docker:
 
 1. Copy the `.env.example` file to `.env`:
 
@@ -102,7 +102,7 @@ SimpliML's infrastructure is built on three major components:
 
 ### 🔧 Backend
 
-The backend is the core API server that handles requests, processes data, and manages the interaction between various components. Built in pure TypeScript, the backend is designed for performance, scalability, and ease of maintenance.
+The backend is the core API server that handles requests, processes data, and manages the interaction between various components. Built-in pure TypeScript, the backend is designed for performance, scalability, and ease of maintenance.
 
 - **Directory**: `backend-server`
 - **Main Features**:
@@ -110,7 +110,7 @@ The backend is the core API server that handles requests, processes data, and ma
   - User authentication and authorization.
   - Database management and interactions.
 
-Follow the [README.md](/backend-server/README.md) in the `backend-server` directory for detailed setup instructions from source.
+Follow the [README.md](/backend-server/README.md) in the `backend-server` directory for detailed setup instructions from the source.
 
 ### 🌐 Frontend
 
@@ -122,11 +122,11 @@ The frontend is a web application built with Next.js, providing an intuitive and
   - Real-time monitoring and logging views.
   - Integration with backend APIs for seamless data interaction.
 
-Follow the [README.md](/frontend/README.md) in the `frontend` directory for detailed setup instructions from source.
+Follow the [README.md](/frontend/README.md) in the `frontend` directory for detailed setup instructions from the source.
 
 ### ⚙️ Inference Gateway
 
-The inference gateway is responsible for managing inference requests, providing a scalable and efficient way to handle model predictions. Built in pure TypeScript, it ensures high performance and reliability.
+The inference gateway is responsible for managing inference requests, providing a scalable and efficient way to handle model predictions. Built-in pure TypeScript, it ensures high performance and reliability.
 
 - **Directory**: `inference-gateway`
 - **Main Features**:
@@ -134,20 +134,20 @@ The inference gateway is responsible for managing inference requests, providing 
   - Manages load balancing and scaling for inference tasks.
   - Provides APIs for real-time inference and batch processing.
 
-Follow the [README.md](/inference-gateway/README.md) in the `inference-gateway` directory for detailed setup instructions from source.
+Follow the [README.md](/inference-gateway/README.md) in the `inference-gateway` directory for detailed setup instructions from the source.
 
 ## 🌐 SimpliML (SaaS)
 
-For users looking for a managed solution, SimpliML Manager offers a Managed SaaS version. With managed version, you can:
+For users looking for a managed solution, SimpliML offers a Managed SaaS version. With the managed version, you can:
 
 - Access a fully managed infrastructure without the need to handle Kubernetes or cloud configurations.
 - Enjoy automated scaling, monitoring, and maintenance.
 - Benefit from premium support and advanced features exclusive to the SaaS offering.
 
-Learn more and sign up to SimpliML [here](https://simpliml.com).
+Learn more and sign up for SimpliML [here](https://simpliml.com).
 
 ## ☁️ Multi-Cloud Support
-SimpliML is designed to support multi-cloud deployments using Kubernetes. Kubernetes provides the necessary orchestration and scaling capabilities, allowing you to deploy SimpliML across various cloud providers seamlessly. Whether you're using AWS, Google Cloud Platform (GCP), Azure, or any other cloud service, SimpliML's infrastructure can be easily configured to suit your needs.
+SimpliML is designed to support multi-cloud deployments using Kubernetes. Kubernetes provides the necessary orchestration and scaling capabilities, allowing you to seamlessly deploy SimpliML across various cloud providers. Whether you're using AWS, Google Cloud Platform (GCP), Azure, or any other cloud service, SimpliML's infrastructure can be easily configured to suit your needs.
 
 ## 📚 Documentation
 
@@ -155,7 +155,7 @@ Detailed documentation is available to help you navigate and utilize all the fea
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! If you're interested in contributing to SimpliML, please read our [Contributing Guide](CONTRIBUTING.md) to get started.
+We welcome contributions from the community! If you want to contribute to SimpliML, please read our [Contributing Guide](CONTRIBUTING.md) to get started.
 
 ## 📄 License
 
@@ -163,4 +163,4 @@ SimpliML is licensed under the [Apache 2.0 License](LICENSE). You are free to us
 
 ---
 
-Thank you for choosing SimpliML! We hope you find it valuable in your machine learning journey. If you have any questions or feedback, please don't hesitate to reach out at [support@simpliml.com](mailto:support@simpliml.com).
+Thank you for choosing SimpliML! We hope you find it valuable in your machine-learning journey. If you have any questions or feedback, please don't hesitate to reach out at [support@simpliml.com](mailto:support@simpliml.com).

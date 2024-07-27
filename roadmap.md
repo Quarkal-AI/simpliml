@@ -15,7 +15,7 @@ This document outlines the planned features and milestones for the SimpliML proj
 ### Q3 2024
 
 - **Enhanced Logging and Monitoring**
-  - [ ] Real-time analytics dashboard.
+  - [x] Real-time analytics dashboard.
 
 - **Server Integration**
   - [ ] Adding triton server support
@@ -23,10 +23,12 @@ This document outlines the planned features and milestones for the SimpliML proj
 - **Details Documentation**
   - [ ] Creating Detailed Documentation
 
+- **Embedding Model Deployment**
+  - [ ] Adding embedding server support
+
 - **Kubernetes Integration**
-  - [ ] Full support for Kubernetes deployment.
-  - [ ] Detailed documentation and tutorials for Kubernetes setup.
-  - [ ] Helm charts for easy deployment.
+  - [x] Full support for Kubernetes deployment.
+  - [x] Helm charts for easy deployment.
 
 ### Q4 2024
 
